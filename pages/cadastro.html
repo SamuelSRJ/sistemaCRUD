@@ -14,37 +14,39 @@
     <script src="assets/scripts/script.js"></script>
 </head>
 <body>
-    <div class="container mt-5" style="width: 40%;">
-        <form action="" class="form-signin border rounded p-4" style="background-color: #FFF;">
-            <!-- Logo -->
-            <div class="text-center mb-4">
-                <i class="fas fa-user-circle fa-4x"></i>
-            </div>
-            <h1 class="h5 mb-3 fw -normal">Cadastro</h1>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="nome" placeholder="E-mail">
-                <label for="email">Nome</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="username" placeholder="E-mail">
-                <label for="email">Username</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" placeholder="E-mail">
-                <label for="email">E-mail</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="password" placeholder="E-mail">
-                <label for="email">Senha</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="passwordconf" placeholder="Senha">
-                <label for="password">Confirme sua senha</label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" action="entrar()">Entrar</button>
-            Já possui login? <a href="../index.html">aqui</a>
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="w-100" style="max-width: 400px">
+            <form action="" class="form-signin border rounded p-4" style="background-color: #FFF;">
+                <!-- Logo -->
+                <div class="text-center mb-4">
+                    <img src="../assets/images/logo2.png" class="img-fluid" style="max-width: 100px" alt="Logo">
+                </div>
+                <h1 class="h5 mb-3 fw -normal">Cadastro</h1>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control focus-ring" id="nome" placeholder="E-mail">
+                    <label for="nome">Nome</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" placeholder="E-mail">
+                    <label for="username">Username</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="E-mail">
+                    <label for="email">E-mail</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" placeholder="E-mail">
+                    <label for="password">Senha</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="passwordconf" placeholder="Senha">
+                    <label for="passwordconf">Confirme sua senha</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" action="entrar()">Entrar</button>
+                <p style="font-size: small;">Já possui login? <a href="../index.html">Entrar</a></p>
 
-        </form>
+            </form>
+        </div>
     </div>
 </body>
 </html>

@@ -14,25 +14,27 @@
     <script src="assets/scripts/script.js"></script>
 </head>
 <body>
-    <div class="container mt-5" style="width: 40%;">
-        <form action="" class="form-signin border rounded p-4" style="background-color: #FFF;">
-            <!-- Logo -->
-            <div class="text-center mb-4">
-                <i class="fas fa-user-circle fa-4x"></i>
-            </div>
-            <h1 class="h5 mb-3 fw -normal">Login</h1>
-            <div class="form-floating mb-3">
-                <input type="" class="form-control" id="email" placeholder="E-mail">
-                <label for="email">E-mail</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Senha">
-                <label for="password">Senha</label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" action="entrar()">Entrar</button>
-            Cadastrar-se <a href="pages/cadastro.html">aqui</a>
-
-        </form>
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="w-100" style="max-width: 400px">
+            <form action="" class="form-signin border rounded p-4" style="background-color: #FFF;">
+                <!-- Logo -->
+                <div class="text-center mb-4">
+                    <img src="assets/images/logo2.png" class="img-fluid" style="max-width: 100px" alt="Logo">
+                </div>
+                <h1 class="h5 mb-3 fw -normal">Login</h1>
+                <div class="form-floating mb-3">
+                    <input type="" class="form-control" id="email" placeholder="E-mail">
+                    <label for="email">E-mail</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" placeholder="Senha">
+                    <label for="password">Senha</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" action="entrar()">Entrar</button>
+                <p style="font-size: small;">Não possui login? <a href="pages/cadastro.html">Cadastre-se</a></p>
+    
+            </form>
+        </div>
     </div>
 </body>
 </html>
