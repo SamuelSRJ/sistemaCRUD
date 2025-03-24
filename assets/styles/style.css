@@ -1,7 +1,9 @@
 body{
     background-image: url(../images/bg2.jpeg);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 100%), url(../images/bg2.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
 }
 
 body {
