@@ -11,7 +11,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/styles/style.css">
     <!-- Javascript -->
-    <script src="assets/scripts/script.js"></script>
+    <script src="../assets/scripts/script.js"></script>
 </head>
 <body class="cadastro">
     <div class="container mt-5 d-flex justify-content-center">
@@ -23,26 +23,28 @@
                 </div>
                 <h1 class="h5 mb-3 fw -normal">Cadastro</h1>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control focus-ring" id="nome" placeholder="E-mail">
-                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control focus-ring" id="name" placeholder="E-mail">
+                    <label for="nome">Nome*</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="username" placeholder="E-mail">
-                    <label for="username">Username</label>
+                    <label for="username">Username*</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" placeholder="E-mail">
-                    <label for="email">E-mail</label>
+                    <label for="email">E-mail*</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="password" placeholder="E-mail">
-                    <label for="password">Senha</label>
+                    <label for="password">Senha*</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="passwordconf" placeholder="Senha">
-                    <label for="passwordconf">Confirme sua senha</label>
+                    <label for="passwordconf">Confirme sua senha*</label>
+                    <div id="warning-fields" class="alert alert-warning alert-sm d-none p-1 mt-3" role="alert" style="font-size: 0.75em;">Preencha todos os campos!</div>
+                    <div id="warning-passwordconf" class="alert alert-warning alert-sm d-none p-1 mt-3" role="alert" style="font-size: 0.75em;">As senhas não correspondem!</div>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" action="entrar()">Cadastrar</button>
+                <button class="w-100 btn btn-lg btn-primary mb-3" id="btnCadastrar" type="button">Cadastrar</button>
                 <p style="font-size: small;">Já possui login? <a href="../index.html">Entrar</a></p>
 
             </form>

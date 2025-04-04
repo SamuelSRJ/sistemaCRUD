@@ -30,8 +30,8 @@
                 <a href="dashboard.html" class="nav-link text-white"><i class="fa fa-gauge sidebar-icon"></i> Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="clientes.html" class="nav-link text-white"><i class="fa fa-handshake sidebar-icon"></i> Clientes</a>
-              </li>
+              <a href="clientes.html" class="nav-link text-white"><i class="fa fa-handshake sidebar-icon"></i> Clientes</a>
+            </li>
             <li class="nav-item">
                 <a href="usuarios.html" class="nav-link text-white"><i class="fa fa-users sidebar-icon"></i> Usuários</a>
             </li>
@@ -47,6 +47,69 @@
     </div>
 
     <!-- content -->
-    
+    <div class="container mt-4" style="margin-left: 250px">
+      <div class="row mb-5">
+        <div class="col">
+          <h1 class="display-6">Consulta de usuários</h1>
+        </div>
+      </div>
+  
+      <div class="row mb-2">
+        <div class="col-md-1">
+          <input type="text" class="form-control" placeholder="ID" id="id" />
+        </div>
+  
+        <div class="col-md-2">
+          <input type="text" class="form-control" placeholder="Username" id="username" />
+        </div>
+
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Nome" id="nome" />
+        </div>
+  
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="E-mail" id="email" />
+        </div>
+
+        <div class="col-md-1 d-flex justify-content-end">
+          <button type="button" class="btn btn-primary" onclick="pesquisarUsuario()">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+  
+      <div class="row mt-4">
+        <div class="col-md-10">
+          <table class="table table-striped table-hover">
+            <colgroup>
+              <col class="col-1">
+              <col class="col-2">
+              <col class="col-3">
+              <col class="col-4">
+              <col class="col-2">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Criado em</th>
+                <th></th>
+              </tr>
+            </thead>
+  
+            <tbody id="listaUsuários">
+                
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+	
+
+        
+
+	</div>
 </body>
 </html>

@@ -28,7 +28,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // PÁGINA DE CADASTRO
     if (document.body.classList.contains('cadastro')) {
-        
+        function cadastrar() {
+            if(document.getElementById('name').value == "" || document.getElementById('username').value == "" || document.getElementById('email').value == "" || document.getElementById('password').value == "" || document.getElementById('passwordconf').value == "") {
+                document.getElementById('warning-fields').classList.remove('d-none');
+                document.getElementById('warning-passwordconf').classList.add('d-none');
+            } else if(document.getElementById('password').value !== document.getElementById('passwordconf').value) {
+                document.getElementById('warning-fields').classList.add('d-none');
+                document.getElementById('warning-passwordconf').classList.remove('d-none');
+            } else {
+                document.getElementById('warning-fields').classList.add('d-none');
+                document.getElementById('warning-passwordconf').classList.add('d-none');
+                alert("Cadastro realizado com sucesso!");
+                window.location.href = '../index.html';
+            }
+        }
+
+        document.getElementById('btnCadastrar').addEventListener('click', cadastrar);
+        document.getElementById('passwordconf').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                cadastrar();
+            }
+        });
     }
 
     // PÁGINA HOME
