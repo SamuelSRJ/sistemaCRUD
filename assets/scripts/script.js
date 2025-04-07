@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 document.getElementById('warning-fields').classList.add('d-none');
                 document.getElementById('warning-passwordconf').classList.add('d-none');
+                document.getElementById('warning-success').classList.remove('d-none');
                 alert("Cadastro realizado com sucesso!");
                 window.location.href = '../index.html';
             }
