@@ -1,0 +1,17 @@
+# Ignorar variáveis de ambiente
+/backend/.env
+
+# Ignorar node_modules
+node_modules/
+
+# Logs
+*.log
+
+# Ignorar arquivos do sistema
+.DS_Store
+
+# Ignorar arquivos temporários
+*.swp
+
+# Ignorar configurações do VS Code (opcional)
+.vscode/
