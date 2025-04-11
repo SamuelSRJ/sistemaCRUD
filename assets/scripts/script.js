@@ -6,15 +6,33 @@ document.addEventListener('DOMContentLoaded', function () {
             if(document.getElementById('email').value == "" || document.getElementById('password').value == "") {
                 document.getElementById('warning-message').classList.remove('d-none');
                 document.getElementById('error-message').classList.add('d-none');
-            } else if(document.getElementById('email').value === 'admin' && document.getElementById('password').value === 'admin') {
-                window.location.href = '../pages/home.html';
             } else {
-                // alert('Usuário ou senha inválidos');
-                document.getElementById('warning-message').classList.add('d-none');
-                document.getElementById('error-message').classList.remove('d-none');
-                document.getElementById('email').value = "";
-                document.getElementById('password').value = "";
-                document.getElementById('email').focus();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        // Login bem-sucedido
+                        localStorage.setItem('token', data.token);
+                        window.location.href = 'home.html';
+                    } else {
+                        // Erro de login
+                        document.getElementById('warning-message').classList.add('d-none');
+                        document.getElementById('error-message').classList.remove('d-none');
+                        document.getElementById('email').value = "";
+                        document.getElementById('password').value = "";
+                        document.getElementById('email').focus();
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao fazer login:', error);
+                })
             }
         }
 
@@ -29,19 +47,50 @@ document.addEventListener('DOMContentLoaded', function () {
     // PÁGINA DE CADASTRO
     if (document.body.classList.contains('cadastro')) {
         function cadastrar() {
-            if(document.getElementById('name').value == "" || document.getElementById('username').value == "" || document.getElementById('email').value == "" || document.getElementById('password').value == "" || document.getElementById('passwordconf').value == "") {
+            const name = document.getElementById('name').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordconf = document.getElementById('passwordconf').value;
+
+            if(name === "" || username === "" || email === "" || password === "" || passwordconf === "") {
                 document.getElementById('warning-fields').classList.remove('d-none');
                 document.getElementById('warning-passwordconf').classList.add('d-none');
-            } else if(document.getElementById('password').value !== document.getElementById('passwordconf').value) {
+            } else if(password !== passwordconf) {
                 document.getElementById('warning-fields').classList.add('d-none');
                 document.getElementById('warning-passwordconf').classList.remove('d-none');
             } else {
+                // Esconde os avisos
                 document.getElementById('warning-fields').classList.add('d-none');
                 document.getElementById('warning-passwordconf').classList.add('d-none');
-                document.getElementById('warning-success').classList.remove('d-none');
-                alert("Cadastro realizado com sucesso!");
-                window.location.href = '../index.html';
+
+                // Envia os dados para o backend
+                fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        nome: name, 
+                        username: username, 
+                        email: email, 
+                        senha: password
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.mensagem && data.mensagem.includes("cadastrado")) {
+                        document.getElementById('warning-success').classList.remove('d-none');
+                        alert("Cadastro realizado com sucesso!");
+                        window.location.href = '../index.html';
+                    } else {
+                        alert("Erro ao cadastrar: " + (data.message || data.mensagem || "Tente novamente"));
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro na requisição:", error);
+                    alert("Erro de conexão com o servidor.");
+                })
             }
+
         }
 
         document.getElementById('btnCadastrar').addEventListener('click', cadastrar);
@@ -54,6 +103,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // PÁGINA HOME
     if(document.body.classList.contains('home')) {
-        
+        const token = localStorage.getItem('token');
+
+        if(!token) {
+            // Se não tiver token, redireciona pro login
+            window.location.href = 'index.html';
+        } else {
+            console.log("Usuário autenticado. Token:", token);
+        }
     }
 });
