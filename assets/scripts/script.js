@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if(data.success) {
                         // Login bem-sucedido
                         localStorage.setItem('token', data.token);
-                        window.location.href = 'home.html';
+                        window.location.href = '/pages/home.html';
                     } else {
                         // Erro de login
                         document.getElementById('warning-message').classList.add('d-none');
@@ -69,15 +69,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
-                        nome: name, 
+                        name: name, 
                         username: username, 
                         email: email, 
-                        senha: password
+                        password: password
                     })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if(data.mensagem && data.mensagem.includes("cadastrado")) {
+                    if(data.message && data.message.includes("cadastrado")) {
                         document.getElementById('warning-success').classList.remove('d-none');
                         alert("Cadastro realizado com sucesso!");
                         window.location.href = '../index.html';
@@ -107,9 +107,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if(!token) {
             // Se não tiver token, redireciona pro login
-            window.location.href = 'index.html';
+            window.location.href = '../index.html';
         } else {
             console.log("Usuário autenticado. Token:", token);
+        }
+
+        const btnLogout = document.getElementById('btnLogout');
+        if(btnLogout) {
+            btnLogout.addEventListener('click', function() {
+                localStorage.removeItem('token');
+                window.location.href = '../index.html';
+            })
         }
     }
 });

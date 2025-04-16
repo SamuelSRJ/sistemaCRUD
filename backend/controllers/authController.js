@@ -4,14 +4,14 @@ const db = require('../config/db');
 
 // Registra um novo usuário
 exports.register = (req, res) => {
-    const { nome, username, email, senha } = req.body;
+    const { name, username, email, password } = req.body;
 
     // Criptografar a senha antes de salvar
-    bcrypt.hash(senha, 10, (err, hash) => {
+    bcrypt.hash(password, 10, (err, hash) => {
         if (err) return res.status(500).json({ success: false, message: 'Erro ao criptografar a senha.'});
 
-        const sql = 'INSERT INTO usuarios (nome, username, email, senha) VALUES (?, ?, ?, ?)';
-        db.query(sql, [nome, username, email, hash], (err, result) => {
+        const sql = 'INSERT INTO usuarios (name, username, email, password) VALUES (?, ?, ?, ?)';
+        db.query(sql, [name, username, email, hash], (err, result) => {
             if (err) {
                 if (err.code === 'ER_DUP_ENTRY') {
                     return res.status(400).json({ success: false, message: 'Email já cadastrado.'});
@@ -26,7 +26,9 @@ exports.register = (req, res) => {
 
 // Faz login do usuário
 exports.login = (req, res) => {
-    const { email, senha } = req.body;
+    console.log("Login request body: ", req.body);
+
+    const { email, password } = req.body;
 
     const sql = 'SELECT * FROM usuarios WHERE email = ?';
     db.query(sql, [email], (err, results) => {
@@ -38,7 +40,7 @@ exports.login = (req, res) => {
 
         const user = results[0];
 
-        bcrypt.compare(senha, user.senha, (err, isMatch) => {
+        bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) return res.status(500).json({ erro: 'Erro ao verficar a senha.'});
             if (!isMatch) return res.status(401).json({ erro: 'Senha incorreta.'});
 
@@ -50,7 +52,8 @@ exports.login = (req, res) => {
             );
 
             res.status(200).json({ 
-                mensagem: 'Login bem-sucedido!',
+                success: true,
+                mensagem: 'Login successful!',
                 token
             });
         });
