@@ -3,36 +3,41 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.body.classList.contains('index')) {
 
         function efetuarLogin() {
-            if(document.getElementById('email').value == "" || document.getElementById('password').value == "") {
+            if(document.getElementById('username').value == "" || document.getElementById('password').value == "") {
                 document.getElementById('warning-message').classList.remove('d-none');
                 document.getElementById('error-message').classList.add('d-none');
             } else {
-                const email = document.getElementById('email').value;
+                const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
 
                 fetch('http://localhost:3000/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    body: JSON.stringify({ username, password })
                 })
-                .then(response => response.json())
+                .then(response => {
+                    console.log("Status da resposta:", response.status);
+                    return response.json();
+                })
                 .then(data => {
+                    console.log("Resposta da API:", data);
+                
                     if(data.success) {
-                        // Login bem-sucedido
                         localStorage.setItem('token', data.token);
+                        localStorage.setItem('userName', data.name);
                         window.location.href = '/pages/home.html';
                     } else {
-                        // Erro de login
+                        console.error("Erro de autenticação:", data.erro);
                         document.getElementById('warning-message').classList.add('d-none');
                         document.getElementById('error-message').classList.remove('d-none');
-                        document.getElementById('email').value = "";
+                        document.getElementById('username').value = "";
                         document.getElementById('password').value = "";
-                        document.getElementById('email').focus();
+                        document.getElementById('username').focus();
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao fazer login:', error);
-                })
+                });
             }
         }
 
@@ -90,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert("Erro de conexão com o servidor.");
                 })
             }
-
         }
 
         document.getElementById('btnCadastrar').addEventListener('click', cadastrar);
@@ -104,18 +108,22 @@ document.addEventListener('DOMContentLoaded', function () {
     // PÁGINA HOME
     if(document.body.classList.contains('home')) {
         const token = localStorage.getItem('token');
+        const userName = localStorage.getItem('userName');
 
         if(!token) {
             // Se não tiver token, redireciona pro login
             window.location.href = '../index.html';
         } else {
             console.log("Usuário autenticado. Token:", token);
+            // Exibe o nome do usuário na página
+            document.getElementById('welcomeMessage').innerText = `Olá, ${userName}`;
         }
 
         const btnLogout = document.getElementById('btnLogout');
         if(btnLogout) {
             btnLogout.addEventListener('click', function() {
                 localStorage.removeItem('token');
+                localStorage.removeItem('userName');
                 window.location.href = '../index.html';
             })
         }

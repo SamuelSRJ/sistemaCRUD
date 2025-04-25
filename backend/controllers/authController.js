@@ -28,10 +28,10 @@ exports.register = (req, res) => {
 exports.login = (req, res) => {
     console.log("Login request body: ", req.body);
 
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    const sql = 'SELECT * FROM usuarios WHERE email = ?';
-    db.query(sql, [email], (err, results) => {
+    const sql = 'SELECT * FROM usuarios WHERE username = ?';
+    db.query(sql, [username], (err, results) => {
         if (err) return res.status(500).json({ erro: 'Erro na consulta ao banco.'});
 
         if (results.length === 0) {
@@ -39,6 +39,7 @@ exports.login = (req, res) => {
         }
 
         const user = results[0];
+        console.log("Dados do usuário: ", user);
 
         bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) return res.status(500).json({ erro: 'Erro ao verficar a senha.'});
@@ -54,6 +55,7 @@ exports.login = (req, res) => {
             res.status(200).json({ 
                 success: true,
                 mensagem: 'Login successful!',
+                name: user.name,
                 token
             });
         });
