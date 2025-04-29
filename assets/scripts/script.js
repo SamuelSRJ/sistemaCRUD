@@ -128,4 +128,9 @@ document.addEventListener('DOMContentLoaded', function () {
             })
         }
     }
+
+    // PÁGINA CLIENTES
+    if(document.body.classList.contains('clientes')) {
+        
+    }
 });
