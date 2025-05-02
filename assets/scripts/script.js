@@ -131,6 +131,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // PÁGINA CLIENTES
     if(document.body.classList.contains('clientes')) {
-        
+        const token = localStorage.getItem('token');
+        const userName = localStorage.getItem('userName');
+        if(!token) {
+            // Se não tiver token, redireciona pro login
+            window.location.href = '../index.html';
+        } else {
+            console.log("Usuário autenticado. Token:", token);
+            // Exibe o nome do usuário na página
+        }
+
+        const modalCadastroCliente = document.getElementById('modalCadastroCliente');
+
+        modalCadastroCliente.addEventListener('hidden.bs.modal', function () {
+            modalCadastroCliente.querySelectorAll('input').forEach(input => input.value = '');
+            document.getElementById('warning-fields').classList.add('d-none'); // Esconde alerta se aparecer
+        });
+
+        function cadastrarCliente() {
+            const nome = document.getElementById('txtNomeCliente').value;
+            const cnpj = document.getElementById('txtCNPJCliente').value;
+            const administrador = document.getElementById('txtAdministradorCliente').value;
+            const email = document.getElementById('txtEmailCliente').value;
+            const telefone = document.getElementById('txtTelefoneCliente').value;
+
+            if(nome === ""|| cnpj === "" || administrador === "" || email === "" || telefone === "") {
+                document.getElementById('warning-fields').classList.remove('d-none');
+                console.log("Preencha todos os campos obrigatórios.");
+            }
+
+        }
+
+        document.getElementById('btnCadastrarCliente').addEventListener('click', cadastrarCliente);
     }
 });

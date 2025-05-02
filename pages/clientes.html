@@ -52,7 +52,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalCadastroClienteLabel">Novo Cliente</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            <button type="button" id="btnCloseModalX" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
           </div>
           <div class="modal-body">
             <form>
@@ -61,7 +61,7 @@
                 <input type="text" class="form-control" id="txtNomeCliente" name="nomeFantasia">
               </div>
               <div class="form-group mb-3">
-                <label for="txtCNPJCliente" class="col-form-label">CNPJ:</label>
+                <label for="txtCNPJCliente" class="col-form-label">CNPJ: (ex.: 00.000.000/0000-00)</label>
                 <input type="text" class="form-control" id="txtCNPJCliente" name="cnpj">
               </div>
               <div class="form-group mb-3">
@@ -84,14 +84,50 @@
                 </select>
               </div> -->
             </form>
+            <div id="warning-fields" class="alert alert-warning d-none alert-sm p-1 mt-3" role="alert" style="font-size: 0.75em;">Preencha todos os campos!</div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCloseModalFechar">Fechar</button>
+            <button type="button" class="btn btn-primary" id="btnCadastrarCliente">Cadastrar</button>
           </div>
         </div>
       </div>
     </div>   
+    <!-- Fim modal cadastro de cliente -->
+
+    <!-- Inicio modal detalhes do cliente -->
+    <div class="modal fade" id="modalDetalheCliente" tabindex="-1" aria-labelledby="modalDetalheCliente" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fs-5" id="modalDetalheClienteTitulo">[45112] Heitor Logística</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <h2 class="fs-5">ID:</h2>
+            <p>45112</p>
+            <h2 class="fs-5">Nome Fantasia:</h2>
+            <p>Heitor Logística</p>
+            <h2 class="fs-5">CNPJ:</h2>
+            <p>45.368.848/0001-16</p>
+            <h2 class="fs-5 mt-2">Administrador:</h2>
+            <p>Heitor Tomazela</p>
+            <h2 class="fs-5 mt-2">E-mail:</h2>
+            <p>heitor@heitorlog.com.br</p>
+            <h2 class="fs-5 mt-2">Telefone:</h2>
+            <p>(19) 96587-1254</p>
+            <h2 class="fs-5">Cadastro criado em:</h2>
+            <p>13/04/2022</p>
+            <h2 class="fs-5">Status:</h2>
+            <p class="badge bg-success">Ativo</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End modal detalhes do cliente -->
 
     <!-- Start content -->
     <div class="content flex-grow-1 p-4">
@@ -140,26 +176,39 @@
             <tbody id="listaUsuários">
               <!-- Exemplo 1 -->
               <tr>
-                <td>1</td>
-                <td>Cliente 1</td>
+                <td>36598</td>
+                <td>Clínica Sage Riot</td>
                 <td>12.345.678/0001-90</td>
                 <td>(11) 91234-5678</td>
-                <td class="justify-content-center"><span class="badge bg-success">2</span></td>
+                <td class="justify-content-center"><span class="badge bg-success">1</span></td>
                 <td>
-                  <button type="button" class="btn btn-warning btn-sm" onclick="editarUsuario(1)">
+                  <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetalheCliente">
                     <i class="fas fa-circle-info"></i>
                   </button>
                 </td>
               </tr>
               <!-- Exemplo 2 -->
               <tr>
-                <td>2</td>
-                <td>Cliente 2</td>
+                <td>43458</td>
+                <td>Cypher Technologies</td>
                 <td>23.456.789/0001-01</td>
                 <td>(21) 92345-6789</td>
                 <td class="justify-content-center"><span class="badge bg-danger">0</span></td>
                 <td>
-                  <button type="button" class="btn btn-warning btn-sm" onclick="editarUsuario(2)">
+                  <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetalheCliente">
+                    <i class="fas fa-circle-info"></i>
+                  </button>
+                </td>
+              </tr>
+              <!-- Exemplo 3 -->
+              <tr>
+                <td>45112</td>
+                <td>Heitor Logística</td>
+                <td>45.368.848/0001-16</td>
+                <td>(21) 93982-7084</td>
+                <td class="justify-content-center"><span class="badge bg-success">1</span></td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetalheCliente">
                     <i class="fas fa-circle-info"></i>
                   </button>
                 </td>
