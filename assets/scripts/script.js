@@ -3,17 +3,17 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.body.classList.contains('index')) {
 
         function efetuarLogin() {
-            if(document.getElementById('username').value == "" || document.getElementById('password').value == "") {
+            if(document.getElementById('email').value == "" || document.getElementById('password').value == "") {
                 document.getElementById('warning-message').classList.remove('d-none');
                 document.getElementById('error-message').classList.add('d-none');
             } else {
-                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
 
                 fetch('http://localhost:3000/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
+                    body: JSON.stringify({ email, password })
                 })
                 .then(response => {
                     console.log("Status da resposta:", response.status);
@@ -53,12 +53,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.body.classList.contains('cadastro')) {
         function cadastrar() {
             const name = document.getElementById('name').value;
-            const username = document.getElementById('username').value;
             const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
             const password = document.getElementById('password').value;
             const passwordconf = document.getElementById('passwordconf').value;
 
-            if(name === "" || username === "" || email === "" || password === "" || passwordconf === "") {
+            if(name === "" || email === "" || telefone === "" || password === "" || passwordconf === "") {
                 document.getElementById('warning-fields').classList.remove('d-none');
                 document.getElementById('warning-passwordconf').classList.add('d-none');
             } else if(password !== passwordconf) {
@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
                         name: name, 
-                        username: username, 
                         email: email, 
+                        telefone: telefone,
                         password: password
                     })
                 })
