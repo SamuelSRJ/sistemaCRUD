@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    // FUNÇÕES GLOBAIS
+    // Validação de token
+    function checkAuthentication() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = '../index.html';
+        }
+    }
+
+    // Configuração do botão de logout
+    function setupLogoutButton() {
+        const btnLogout = document.getElementById('btnLogout');
+        if (btnLogout) {
+            btnLogout.addEventListener('click', function() {
+                localStorage.removeItem('token');
+                localStorage.removeItem('userName');
+                window.location.href = '../index.html';
+            });
+        }
+    }
+    
     // PÁGINA INDEX
     if (document.body.classList.contains('index')) {
 
@@ -107,39 +129,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // PÁGINA HOME
     if(document.body.classList.contains('home')) {
-        const token = localStorage.getItem('token');
+        checkAuthentication();
+
         const userName = localStorage.getItem('userName');
+        document.getElementById('welcomeMessage').innerText = `Olá, ${userName}`;
 
-        if(!token) {
-            // Se não tiver token, redireciona pro login
-            window.location.href = '../index.html';
-        } else {
-            console.log("Usuário autenticado. Token:", token);
-            // Exibe o nome do usuário na página
-            document.getElementById('welcomeMessage').innerText = `Olá, ${userName}`;
-        }
+        setupLogoutButton();
+    }
 
-        const btnLogout = document.getElementById('btnLogout');
-        if(btnLogout) {
-            btnLogout.addEventListener('click', function() {
-                localStorage.removeItem('token');
-                localStorage.removeItem('userName');
-                window.location.href = '../index.html';
-            })
-        }
+    // PÁGINA DASHBOARD
+    if(document.body.classList.contains('dashboard')) {
+        checkAuthentication();
+
+        setupLogoutButton();
     }
 
     // PÁGINA CLIENTES
     if(document.body.classList.contains('clientes')) {
-        const token = localStorage.getItem('token');
-        const userName = localStorage.getItem('userName');
-        if(!token) {
-            // Se não tiver token, redireciona pro login
-            window.location.href = '../index.html';
-        } else {
-            console.log("Usuário autenticado. Token:", token);
-            // Exibe o nome do usuário na página
-        }
+        checkAuthentication();
+
+        setupLogoutButton();
 
         const modalCadastroCliente = document.getElementById('modalCadastroCliente');
 
@@ -149,13 +158,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         function cadastrarCliente() {
-            const nome = document.getElementById('txtNomeCliente').value;
+            const nomefantasia = document.getElementById('txtNomeFantasia').value;
             const cnpj = document.getElementById('txtCNPJCliente').value;
-            const administrador = document.getElementById('txtAdministradorCliente').value;
-            const email = document.getElementById('txtEmailCliente').value;
-            const telefone = document.getElementById('txtTelefoneCliente').value;
+            const emailadmin = document.getElementById('txtEmailCliente').value;
 
-            if(nome === ""|| cnpj === "" || administrador === "" || email === "" || telefone === "") {
+            if(nomefantasia === ""|| cnpj === "" || emailadmin === "") {
                 document.getElementById('warning-fields').classList.remove('d-none');
                 console.log("Preencha todos os campos obrigatórios.");
             }
@@ -163,5 +170,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         document.getElementById('btnCadastrarCliente').addEventListener('click', cadastrarCliente);
+    }
+
+    // PÁGINA USUÁRIOS
+    if(document.body.classList.contains('usuarios')) {
+        checkAuthentication();
+
+        setupLogoutButton();
+    }
+
+    // PÁGINA ASSINATURAS
+    if(document.body.classList.contains('assinatura')) {
+        checkAuthentication();
+
+        setupLogoutButton();
     }
 });

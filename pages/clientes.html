@@ -39,7 +39,7 @@
           </li>
           <!-- Botão de Sair no final -->
           <li class="nav-item mt-auto pl-5">
-            <a href="../index.html" class="nav-link text-danger"><i class="fa fa-right-from-bracket sidebar-icon"></i> Sair</a>
+            <a href="../index.html" class="nav-link text-danger" id="btnLogout"><i class="fa fa-right-from-bracket sidebar-icon"></i> Sair</a>
           </li>
         </ul>
       </div>
@@ -57,32 +57,17 @@
           <div class="modal-body">
             <form>
               <div class="form-group mb-3">
-                <label for="txtNomeCliente" class="col-form-label">Nome Fantasia:</label>
-                <input type="text" class="form-control" id="txtNomeCliente" name="nomeFantasia">
+                <label for="txtNomeFantasia" class="col-form-label">Nome Fantasia:</label>
+                <input type="text" class="form-control" id="txtNomeFantasia" name="nomeFantasia">
               </div>
               <div class="form-group mb-3">
                 <label for="txtCNPJCliente" class="col-form-label">CNPJ: (ex.: 00.000.000/0000-00)</label>
                 <input type="text" class="form-control" id="txtCNPJCliente" name="cnpj">
               </div>
               <div class="form-group mb-3">
-                <label for="txtAdministradorCliente" class="col-form-label">Nome do Administrador:</label>
-                <input type="text" class="form-control" id="txtAdministradorCliente" name="nomeAdministrador">
-              </div>
-              <div class="form-group mb-3">
                 <label for="txtEmailCliente" class="col-form-label">E-mail Admin:</label>
                 <input type="email" class="form-control" id="txtEmailCliente" name="emailAdmin">
               </div>
-              <div class="form-group mb-3">
-                <label for="txtTelefoneCliente" class="col-form-label">Telefone:</label>
-                <input type="tel" class="form-control" id="txtTelefoneCliente" name="telefone">
-              </div>
-              <!-- <div class="form-group mb-3">
-                <label for="slcStatusCliente" class="col-form-label">Status:</label>
-                <select id="slcStatusCliente" class="form-select">
-                  <option value="ativo" selected>Ativo</option>
-                  <option value="inativo">Inativo</option>
-                </select>
-              </div> -->
             </form>
             <div id="warning-fields" class="alert alert-warning d-none alert-sm p-1 mt-3" role="alert" style="font-size: 0.75em;">Preencha todos os campos!</div>
           </div>

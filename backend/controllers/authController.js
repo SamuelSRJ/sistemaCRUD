@@ -24,6 +24,23 @@ exports.register = (req, res) => {
     });
 };
 
+// Registra um novo cliente
+exports.cadastroCliente = (req, res) => {
+    const { nomefantasia, cnpj, email } = req.body;
+
+    const sql = 'INSERT INTO clientes (nomefantasia, cnpj, email) VALUES (?, ?, ?)';
+    db.query(sql, [nomefantasia, cnpj, email], (err, result) => {
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(400).json({ success: false, message: 'Empresa já cadastrada.'});
+            }
+            return res.status(500).json({ success: false, message: 'Erro ao cadastrar a empresa.'});
+        }
+
+        res.status(201).json({success: true, message: 'Empresa cadastrada com sucesso.'});
+    })
+}
+
 // Faz login do usuário
 exports.login = (req, res) => {
     // console.log("Login request body: ", req.body);
