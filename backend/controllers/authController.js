@@ -25,10 +25,10 @@ exports.register = (req, res) => {
 };
 
 // Registra um novo cliente
-exports.cadastroCliente = (req, res) => {
+exports.cadastrocliente = (req, res) => {
     const { nomefantasia, cnpj, email } = req.body;
 
-    const sql = 'INSERT INTO clientes (nomefantasia, cnpj, email) VALUES (?, ?, ?)';
+    const sql = 'INSERT INTO clientes (nome_fantasia, cnpj, email_administrador) VALUES (?, ?, ?)';
     db.query(sql, [nomefantasia, cnpj, email], (err, result) => {
         if (err) {
             if (err.code === 'ER_DUP_ENTRY') {

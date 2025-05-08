@@ -165,6 +165,34 @@ document.addEventListener('DOMContentLoaded', function () {
             if(nomefantasia === ""|| cnpj === "" || emailadmin === "") {
                 document.getElementById('warning-fields').classList.remove('d-none');
                 console.log("Preencha todos os campos obrigatórios.");
+            } else {
+                // Esconde os avisos
+                document.getElementById('warning-fields').classList.add('d-none');
+
+                // Envia os dados para o backend
+                fetch('http://localhost:3000/api/cadastrocliente', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nomefantasia: nomefantasia,
+                        cnpj: cnpj,
+                        email: emailadmin
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        alert("Cadastro realizado com sucesso!");
+                        console.log("Cadastro realizado com sucesso!");
+                        const bootstrapModal = bootstrap.Modal.getInstance(modalCadastroCliente);
+                        bootstrapModal.hide();
+                    } else {
+                        console.error("Erro ao cadastrar cliente:", data.message || data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro na requisição:", error);
+                })
             }
 
         }
