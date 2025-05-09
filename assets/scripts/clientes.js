@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if(data.success) {
-                    alert("Cadastro realizado com sucesso!");
+                    // alert("Cadastro realizado com sucesso!");
                     console.log("Cadastro realizado com sucesso!");
                     const bootstrapModal = bootstrap.Modal.getInstance(modalCadastroCliente);
                     bootstrapModal.hide();
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await fetch('http://localhost:3000/api/clientes');
             const clientes = await response.json();
-            const tabela = document.getElementById('listaUsuarios');
+            const tabela = document.getElementById('listaClientes');
             tabela.innerHTML = ''; // Limpa qualquer conteúdo anterio
             clientes.forEach(cliente => {
                 const linha = document.createElement('tr')

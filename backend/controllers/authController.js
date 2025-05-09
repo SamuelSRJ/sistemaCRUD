@@ -88,5 +88,3 @@ exports.cadastrocliente = async (req, res) => {
         res.status(500).json({ success: false, message: 'Erro ao cadastrar a empresa.'});
     }
 };
-
-// Lista as empresas cadastradas

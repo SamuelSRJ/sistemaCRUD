@@ -30,4 +30,20 @@ router.get('/clientes', async (req, res) => {
     }
 });
 
+router.get('/usuarios', async (req, res) => {
+    let connection;
+    try {
+        connection = await connectToDatabase(); // <- Cria a conexão aqui
+        const [rows] = await connection.query('SELECT * FROM usuarios');
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ erro: 'Erro ao buscar usuários' });
+    } finally {
+        if(connection) {
+            await connection.end(); // Fecha a conexão com o banco de dados
+        }
+    }
+})
+
 module.exports = router;

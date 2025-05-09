@@ -8,7 +8,7 @@ async function connectToDatabase() {
         password: process.env.DB_PASS,
         database: process.env.DB_NAME
     });
-    console.log('Conectado no MySQL (modo promise)');
+    // console.log('Conectado no MySQL (modo promise)');
     return connection;
 };
 
