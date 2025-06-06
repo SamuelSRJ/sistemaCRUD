@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error("Erro na requisição:", error);
             })
         }
+        carregarClientes();
     }
 
     document.getElementById('btnCadastrarCliente').addEventListener('click', cadastrarCliente);
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </td>        
                 `;
                 tabela.appendChild(linha);
-                carregarClientes();
+                // carregarClientes();
             });
         } catch (error) {
             console.error('Erro ao carregar clientes: ', error);
