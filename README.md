@@ -1,4 +1,5 @@
-# Sistema CRUD Iftrue
+# Sistema CRUD - IFTRUE
+![logohome](https://github.com/user-attachments/assets/86bed189-97b0-4605-84ae-26dcd7a2409d)
 
 Sistema web completo para gestão de usuários, clientes e assinaturas, desenvolvido como projeto de estudo e portfólio.
 
@@ -94,7 +95,18 @@ Abra o arquivo `index.html` no navegador ou utilize uma extensão de servidor lo
 
 ## 📸 Screenshots
 
-> Adicione aqui prints das telas principais do sistema.
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/669f76ee-c8e3-48bc-b625-9661f846523f" width="400" alt="Tela 1"/></td>
+    <td><img src="https://github.com/user-attachments/assets/685744f4-d5e9-4885-ad9b-508399a18b05" width="400" alt="Tela 2"/></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/f446948f-de99-40e8-a064-569047434a95" width="400" alt="Tela 3"/></td>
+    <td><img src="https://github.com/user-attachments/assets/5816c774-a8fb-4fd0-be95-106ccd04e0fd" width="400" alt="Tela 4"/></td>
+  </tr>
+</table>
+
+
 
 ## 👤 Autor
 
